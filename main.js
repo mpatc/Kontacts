@@ -1,7 +1,9 @@
 'use strict';
 $(document).ready(function(){
+$('.adder').addClass('animated pluse');
+
+
   var Id = 2
-  $('#adder').addClass('animated pluse');
 $( "#target" ).on('click', function( event ) {
 var Name = $('#name').val();
 var Address = $('#address').val();
@@ -28,16 +30,20 @@ var Like = $('#liker').val();
 //   "<th>${Like}</th>",
 //   "</tr>"
 // ];
-$(".table").append('<tr class="person"><th scope="row">'+Id+ '</th><td>'+Name+'</td><td>'+Address+'</td><td>'+Phone+ '</td><td>'+Pic+'</td><td>'+Email+'</td><td><button type="button" class="btn btn-success">Fav?</button></td></tr>')
+$(".table").append('<tr class="person"><th scope="row">'+Id+ '</th><td>'+Name+'</td><td>'+Address+'</td><td>'+Phone+ '</td><td>'+'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personModal" data-seriel="'+ Id + '">View/Edit</button></td><td>'+Email+'</td><td><button type="button" class="btn btn-success like">Fav?</button></td></tr>')
 $(".person").addClass('animated bounceInLeft')
 Id++
-$('#adder').addClass('animated pluse');
 });
-  $( "#contactList tbody tr" ).on( "click", function() {
-    console.log( $( this ).text() );
-    $(this).addClass('animated pluse')
+
+
+  $( "#contactList tbody tr" ).on( "mouseover", function() {
+    // console.log( $( this ).text() );
+    $(this).toggleClass('animated infinite headShake')
   });
 });
+$('.like').on('click', function() {
+  console.log(this)
+})
 
 
 

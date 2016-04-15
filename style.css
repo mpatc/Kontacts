@@ -41,3 +41,6 @@
 .box {
 
 }
+.person:mouseover {
+  background-color: pink
+}
