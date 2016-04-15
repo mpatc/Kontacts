@@ -30,7 +30,7 @@ var Like = $('#liker').val();
 //   "<th>${Like}</th>",
 //   "</tr>"
 // ];
-$(".table").append('<tr class="person"><th scope="row">'+Id+ '</th><td>'+Name+'</td><td>'+Address+'</td><td>'+Phone+ '</td><td>'+'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personModal" data-seriel="'+ Id + '">View/Edit</button></td><td>'+Email+'</td><td><button type="button" class="btn btn-success like">Fav?</button></td></tr>')
+$(".table").append('<tr class="person"><th scope="row">'+Id+ '</th><td>'+Name+'</td><td>'+Address+'</td><td>'+Phone+ '</td><td>'+'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personModal" data-seriel="'+ Id + '">View/Edit</button></td><td>'+Email+'</td><td><button type="button" data-toggle="button" aria-pressed="false" class="btn btn-success like">Fav?</button></td></tr>')
 $(".person").addClass('animated bounceInLeft')
 Id++
 });
@@ -38,11 +38,11 @@ Id++
 
   $( "#contactList tbody tr" ).on( "mouseover", function() {
     // console.log( $( this ).text() );
-    $(this).toggleClass('animated infinite headShake')
+    $(this).toggleClass('animated headShake')
   });
 });
-$('.like').on('click', function() {
-  console.log(this)
+$('#contactList tbody tr button').on('click', function() {
+  console.log("hello")
 })
 
 
