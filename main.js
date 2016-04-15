@@ -1,6 +1,7 @@
 'use strict';
 $(document).ready(function(){
   var Id = 2
+  $('#adder').addClass('animated pluse');
 $( "#target" ).on('click', function( event ) {
 var Name = $('#name').val();
 var Address = $('#address').val();
@@ -30,9 +31,11 @@ var Like = $('#liker').val();
 $(".table").append('<tr class="person"><th scope="row">'+Id+ '</th><td>'+Name+'</td><td>'+Address+'</td><td>'+Phone+ '</td><td>'+Pic+'</td><td>'+Email+'</td><td><button type="button" class="btn btn-success">Fav?</button></td></tr>')
 $(".person").addClass('animated bounceInLeft')
 Id++
+$('#adder').addClass('animated pluse');
 });
   $( "#contactList tbody tr" ).on( "click", function() {
     console.log( $( this ).text() );
+    $(this).addClass('animated pluse')
   });
 });
 
