@@ -2,13 +2,18 @@
 $(document).ready(function() {
 
     function makePerson() {
-      // var long = localStorage.Persons
-      var long = JSON.parse(localStorage.Persons)
-      console.log(long)
+        // var long = localStorage.Persons
+        $('#innerContact').empty();
+        var long = JSON.parse(localStorage.Persons) || []
+        console.log(long)
         for (var i = 0; i < long.length; i++) {
-          var People = long[i]
+            var People = long[i]
             var $tr = $('<tr>').attr("class", "person")
-            var $th = $('<th>').attr("scope", "row").text(People.Id).appendTo($tr);
+            if (!People.Id) {
+                var $th = $('<th>').attr("scope", "row").text("1").appendTo($tr);
+            } else {
+                var $th = $('<th>').attr("scope", "row").text(People.Id).appendTo($tr);
+            }
             var $td1 = $('<td>').text(People.Name).appendTo($tr);
             var $td2 = $('<td>').text(People.Address).appendTo($tr);
             var $td3 = $('<td>').text(People.Phone).appendTo($tr);
@@ -22,10 +27,10 @@ $(document).ready(function() {
             }).text("View/Edit").appendTo($tr)
             var $td5 = $('<td>').text(People.Email).appendTo($tr)
             var $btn2 = $('<button>').attr({
-              type: "button",
-              "data-toggle": "button",
-              "aria-pressed": "false",
-              class: "btn btn-success like"
+                type: "button",
+                "data-toggle": "button",
+                "aria-pressed": "false",
+                class: "btn btn-success like"
             }).text("Fav?").appendTo($tr)
             $('#innerContact').append($tr)
         }
@@ -43,9 +48,22 @@ $(document).ready(function() {
 
 
     $("div.table-responsive").on("dblclick", ".person", function() {
-        // console.log( $( this ).text() );
         console.log(this)
-        $(this).remove()
+        var Idnum = $(this).find('th').text()
+        var list = JSON.parse(localStorage.Persons)
+        if (parseInt(Idnum) < list.length) {
+            var toDelete = parseInt(Idnum) - 1;
+            var Deleted = list.splice(toDelete, 1)
+            var newList = JSON.stringify(list)
+            localStorage.Persons = newList
+            makePerson();
+        } else {
+            list.pop();
+            var newList = JSON.stringify(list)
+            localStorage.Persons = newList
+            makePerson();
+        }
+        // var toDelete = $(this).first('th').text()
     });
     $("div.table-responsive").on("mouseover", ".person", function() {
         // console.log( $( this ).text() );
@@ -60,46 +78,52 @@ $(document).ready(function() {
     // var Likes = [true];
     // var Persons = []
 
-    var Id = 1
     $("#setLocalAll").on('click', function(event) {
         // var model = $('.json').text() || '{}'
         var Name = $('#name').val();
-        Names.push(Name)
+        // Names.push(Name)
         var Address = $('#address').val();
-        Addresses.push(Address)
+        // Addresses.push(Address)
         var Phone = $('#phone').val();
-        Phones.push(Phone)
+        // Phones.push(Phone)
         var Pic = $('#photo').val();
-        Pics.push(Pic)
+        // Pics.push(Pic)
         var Email = $('#email').val();
-        Emails.push(Email)
+        // Emails.push(Email)
         var Like = $('#liker').val();
-        Likes.push(Like)
+        // Likes.push(Like)
         var per = JSON.parse(localStorage.Persons)
+
+        var Last = per[per.length - 1]
+        if (!Last) {
+            var Last = new Object();
+            Last.Id = 0;
+        }
+
+
         // Persons.push(per)
         // console.log(model)
         var model = new Object();
-        model.Id = Id
+        model.Id = Last.Id + 1;
         model.Name = Name;
         model.Address = Address;
         model.Phone = Phone;
         model.Picture = Pic;
         model.Email = Email;
         model.Like = liker;
-        per.push(model)
-        console.log(per)
-        var ob = JSON.stringify(per)
+        per.push(model);
+      var ob = JSON.stringify(per)
             // console.log("model: " + model + "ob: " + ob)
             // console.log(Names, Phones)
-        localStorage.Person = ob
-        localStorage.Id = Id
-        localStorage.Names = Names
-        localStorage.Addresses = Addresses
-        localStorage.Phones = Phones
-        localStorage.Pics = Pics
-        localStorage.Emails = Emails
-        localStorage.Likes = Likes
-        localStorage.Persons = Persons
+        localStorage.Persons = ob
+            // localStorage.Id = Id
+            // localStorage.Names = Names
+            // localStorage.Addresses = Addresses
+            // localStorage.Phones = Phones
+            // localStorage.Pics = Pics
+            // localStorage.Emails = Emails
+            // localStorage.Likes = Likes
+            // localStorage.Persons = Persons
 
 
         // var key = $('#key').val();
@@ -118,11 +142,10 @@ $(document).ready(function() {
         //   "<th>${Like}</th>",
         //   "</tr>"
         // ];
-makePerson();
+        makePerson();
         // $(".person:last-child").addClass('animated bounceInLeft')
-        Id++
-      });
-      });
+    });
+});
 
 //
 // $('#contactList tbody tr button').on('click', function() {
