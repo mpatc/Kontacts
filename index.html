@@ -15,8 +15,24 @@
     <link rel="stylesheet" href="style.css">
 <script src="main.js"></script>
 </head>
-
-
+<body>
+  <!-- <h1 class="json">
+    <template class ="template" id="makePerson">
+      <tr class="person">
+          <th scope="row">1</th>
+          <td>Karl Marx</td>
+          <td>123 Happy St, Moscow USSR</td>
+          <td>867-5309</td>
+          <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personModal" data-seriel="1">View/Edit</button>
+          </td>
+          <td>1@comrade.com</td>
+          <td>
+              <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-success like">Fav?</button>
+          </td>
+      </tr>
+    </template>
+  </h1> -->
 <div class="container">
 
     <!-- Button trigger modal -->
@@ -66,45 +82,49 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" id='target' class="btn btn-primary" data-dismiss="modal">Submit</button>
+                    <button type="button" class="btn btn-warning" id="setLocalAll">Set ALL to JSON</button>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="container">
-    <div class="table-responsive">
-        <table class="table table-hover" id="contactList">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Pic</th>
-                    <th>Email</th>
-                    <th>Favorite</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class"person animated infinite shake">
-                    <th scope="row">1</th>
-                    <td>Karl Marx</td>
-                    <td>123 Happy St, Moscow USSR</td>
-                    <td>867-5309</td>
-                    <td>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personModal" data-seriel="1">View/Edit</button>
-                    </td>
-                    <td>1@comrade.com</td>
-                    <td>
-                        <button type="button" class="btn btn-success like">Fav?</button>
-                    </td>
-                </tr>
+    <div class="row">
+      <div class="table-responsive">
+          <table class="table table-hover" id="contactList">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Address</th>
+                      <th>Phone</th>
+                      <th>Pic</th>
+                      <th>Email</th>
+                      <th>Favorite</th>
+                  </tr>
+              </thead>
+              <tbody id="innerContact">
+                  <!-- <tr class="person">
+                      <th scope="row">1</th>
+                      <td>Karl Marx</td>
+                      <td>123 Happy St, Moscow USSR</td>
+                      <td>867-5309</td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personModal" data-seriel="1">View/Edit</button>
+                      </td>
+                      <td>1@comrade.com</td>
+                      <td>
+                          <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-success like">Fav?</button>
+                      </td>
+                  </tr> -->
 
-            </tbody>
-        </table>
+              </tbody>
+          </table>
+      </div>
+      <button type="button" class="btn btn-primary-outline btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+          Add a Contact </button>
     </div>
-    <button type="button" class="btn btn-primary-outline btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-        Add a Contact </button>
 </div>
 
 <div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -116,8 +136,8 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-8 lime"></div>
-          <div class="col-md-4 blue"></div>
+          <div class="col-md-8 lime">Your Name Here</div>
+          <div class="col-md-4 blue"><img class="img-responsive"src='re.jpg' alt=""></div>
         </div>
       </div>
       <div class="modal-footer">
