@@ -44,3 +44,6 @@
 .person:mouseover {
   background-color: pink
 }
+h1.json {
+  display: none;
+}
